@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import CountrySelector from './components/CountrySelector';
 
-function App() {
+import Navbar from './components/Navbar';
+
+const App = () => {
+  const [countries, setCountries] = useState([]);
+  
+
+  
+
+  useEffect(() => {
+    // Fetch list of countries from the REST Countries API
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch('https://restcountries.com/v2/all');
+        const data = await response.json();
+        setCountries(data);
+      } catch (error) {
+        console.error('Error fetching countries:', error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
+ 
+
+  const handleCountrySelection = (countries) => {
+    setSelectedCountries(countries);
+  };
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen flex flex-col">
+      <Navbar/>
+      <CountrySelector onCountrySelection={handleCountrySelection} countries={countries} />
+      
     </div>
   );
-}
+};
 
 export default App;
