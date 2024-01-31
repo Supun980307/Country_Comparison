@@ -30,6 +30,6 @@ Select two countries using the dropdowns or search feature.
 
 ## Technologies Used
 
-React
-HTML
+React,
+HTML,
 CSS

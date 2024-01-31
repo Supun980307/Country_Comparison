@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 
 const App = () => {
   const [countries, setCountries] = useState([]);
-  
+  const [selectedCountries, setSelectedCountries] = useState([]);
 
   
 
@@ -32,9 +32,9 @@ const App = () => {
 
   
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="">
       <Navbar/>
-      <CountrySelector onCountrySelection={handleCountrySelection} countries={countries} />
+      <CountrySelector onCountrySelection={handleCountrySelection} countries={countries} defaultSelectedCountries={selectedCountries} />
       
     </div>
   );
